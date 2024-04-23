@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="MaxAndMin.html">Max and Min</a></li>
+        <li><a href="Missing.html">Missing</a></li>
+        <li><a href="palindrome.html">Palindrome</a></li>
+    </ul>
+    </nav>
+    <h1>Main page</h1>
+    <div class="container mt-5">
+        <h2 class="text-center">Missing Number Finder</h2>
+        
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form id="numberForm">
+              <div class="form-group">
+                <label for="numberInput">Enter numbers (comma-separated):</label>
+                <input type="text" class="form-control" id="numberInput" name="numberInput">
+              </div>
+              <button type="button" class="btn btn-primary btn-block" onclick="findMissingNumber()">Find Missing Number</button>
+            </form>
+          </div>
+        </div>
+        
+        <div id="result" class="mt-4" style="display: none;">
+          <h3 class="text-center">Result:</h3>
+          <p id="missingNumberResult" class="text-center"></p>
+        </div>
+      </div>
+
+
+      <script> function findMissingNumber() {
+        const numberInput = document.getElementById("numberInput").value;
+        const numbers = numberInput.split(',').map(Number);
+        
+        const sortedNumbers = numbers.sort((a, b) => a - b);
+        const n = sortedNumbers.length;
+        let missingNumber = null;
+      
+        for (let i = 0; i < n - 1; i++) {
+          if (sortedNumbers[i + 1] - sortedNumbers[i] !== 1) {
+            missingNumber = sortedNumbers[i] + 1;
+            break;
+          }
+        }
+      
+        const resultDiv = document.getElementById("result");
+        const missingNumberResult = document.getElementById("missingNumberResult");
+      
+        if (missingNumber !== null) {
+          missingNumberResult.textContent = `The missing number is: ${missingNumber}`;
+        } else {
+          missingNumberResult.textContent = "No missing number found.";
+        }
+      
+        resultDiv.style.display = "block";
+      }</script>
+</body>
+</html>

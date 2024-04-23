@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="MaxAndMin.html">Max and Min</a></li>
+        <li><a href="Missing.html">Missing</a></li>
+        <li><a href="palindrome.html">Palindrome</a></li>
+    </ul>
+    </nav>
+    <h1>Main page</h1>
+    <div class="container mt-5">
+        <h2>Minimum and Maximum Finder</h2>
+        
+        <form id="numberForm">
+          <div class="form-group">
+            <label for="numberInput">Enter numbers (comma-separated):</label>
+            <input type="text" class="form-control" id="numberInput" name="numberInput">
+          </div>
+          <button type="button" class="btn btn-primary" onclick="findMinMax()">Find Min/Max</button>
+        </form>
+        
+        <div id="result" class="mt-4" style="display: none;">
+          <h3>Result:</h3>
+          <p id="minMaxResult"></p>
+        </div>
+      </div>
+    
+
+<script>function findMinMax() {
+    const numberInput = document.getElementById("numberInput").value;
+    const numbers = numberInput.split(',').map(Number);
+    
+    if (!numbers || numbers.length === 0 || numbers.some(isNaN)) {
+      document.getElementById("minMaxResult").textContent = "Invalid input. Please enter valid numbers.";
+      document.getElementById("result").style.display = "block";
+      return;
+    }
+  
+    let min = numbers[0];
+    let max = numbers[0];
+  
+    for (let i = 1; i < numbers.length; i++) {
+      if (numbers[i] < min) {
+        min = numbers[i];
+      }
+      if (numbers[i] > max) {
+        max = numbers[i];
+      }
+    }
+  
+    document.getElementById("minMaxResult").textContent = `Minimum: ${min}, Maximum: ${max}`;
+    document.getElementById("result").style.display = "block";
+  }</script>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

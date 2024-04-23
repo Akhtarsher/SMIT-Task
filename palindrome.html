@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="MaxAndMin.html">Max and Min</a></li>
+        <li><a href="Missing.html">Missing</a></li>
+        <li><a href="palindrome.html">Palindrome</a></li>
+    </ul>
+    </nav>
+    <h1>Main page</h1>
+    <div class="container mt-5">
+        <h2>Palindrome Checker</h2>
+        
+        <form id="palindromeForm">
+          <div class="form-group">
+            <label for="inputString">Enter a string:</label>
+            <input type="text" class="form-control" id="inputString" name="inputString">
+          </div>
+          <button type="button" class="btn btn-primary" onclick="checkPalindrome()">Check</button>
+        </form>
+        
+        <div id="result" class="mt-4" style="display: none;">
+          <h3>Result:</h3>
+          <p id="palindromeResult"></p>
+        </div>
+      </div>
+    
+
+      <script>
+        function checkPalindrome() {
+          const inputString = document.getElementById("inputString").value;
+          const resultDiv = document.getElementById("result");
+          const palindromeResult = document.getElementById("palindromeResult");
+      
+          // Function to check if a string is a palindrome
+          function isPalindrome(str) {
+            const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+            for (let i = 0; i < cleanStr.length / 2; i++) {
+              if (cleanStr[i] !== cleanStr[cleanStr.length - 1 - i]) {
+                return false;
+              }
+            }
+            return true;
+          }
+      
+          // Check if the input string is a palindrome
+          if (isPalindrome(inputString)) {
+            palindromeResult.textContent = `"${inputString}" is a palindrome.`;
+          } else {
+            palindromeResult.textContent = `"${inputString}" is not a palindrome.`;
+          }
+      
+          // Show the result
+          resultDiv.style.display = "block";
+        }</script>
+</body>
+</html>
